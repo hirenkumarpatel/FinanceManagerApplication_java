@@ -90,7 +90,7 @@ public class TransactionOpearation extends HttpServlet {
 
             }
 
-            String query = "select t.*,c.category_name from transactions t, categories c where t.user_email=? and t.category_id=c.category_id and t.account_id=?";
+            String query = "select t.*,c.category_name from transactions t, categories c where t.user_email=? and t.category_id=c.category_id group by t.account_id=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, userEmail);
             pstmt.setInt(2, accountId);

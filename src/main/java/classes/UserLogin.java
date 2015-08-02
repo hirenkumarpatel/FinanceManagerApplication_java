@@ -95,8 +95,7 @@ public class UserLogin extends HttpServlet {
         
         userEmail = request.getParameter("txtEmailAddress");
         userPassword = request.getParameter("txtPassword");
-        writer.println(userEmail);
-        writer.println(userPassword);
+        
         
 
         if ( userEmail.isEmpty() || userPassword.isEmpty()) {
@@ -111,6 +110,10 @@ public class UserLogin extends HttpServlet {
                     writer.println("database connection successful.");
 
                 }
+                else
+                {
+                    writer.println("database connection failed.");
+                }
 
                String query = "select user_email from users where user_email=? and user_password=?";
                 PreparedStatement pstmt = conn.prepareStatement(query);
@@ -122,10 +125,11 @@ public class UserLogin extends HttpServlet {
                 while (result.next()) {
                    
                     newUserEmail = result.getString(1);
+                     writer.println("new user email in result :"+newUserEmail);
                 }
               
-                if (newUserEmail!= null) {
-                    
+                if ( newUserEmail.equals(userEmail)) {
+                    writer.println("new user email :"+newUserEmail);
                     HttpSession session = request.getSession();
                     session.setAttribute("user",newUserEmail);
                     //response.sendRedirect("home.jsp");
@@ -135,17 +139,17 @@ public class UserLogin extends HttpServlet {
                 else
                 {
                     writer.println("Invalid user name or password");
-                    response.sendRedirect("index.jsp?error=Invalid Email Address or password!");
+                    //response.sendRedirect("index.jsp?error=Invalid Email Address or password!");
                 }
               conn.close();  
 
             } catch (SQLException ex) {
-                 writer.println(ex.getMessage());
+                 writer.println("sql error"+ex.getMessage());
                 Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
             }
             catch(Exception ex)
             {
-                writer.println(ex.getMessage());
+                writer.println("other exception"+ex.getMessage());
                 
             }
             writer.close();

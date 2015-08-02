@@ -1,8 +1,10 @@
 <%-- 
-    Document   : home
-    Created on : 27-Jul-2015, 10:26:04 PM
+    Document   : report
+    Created on : 1-Aug-2015, 10:23:39 PM
     Author     : Hiren Patel
 --%>
+
+
 
 
 <%@page import="java.text.SimpleDateFormat"%>
@@ -29,6 +31,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <link rel="stylesheet" href="css/style.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.min" media="screen">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/transaction-ajax.js"></script>
 
     </head>
     <body>
@@ -53,6 +57,8 @@
                         <li>
                             <a href="report.jsp">Reports</a>
                         </li>
+                        
+                        
                         
 
                     </ul>
@@ -90,7 +96,7 @@
                                     <div class="bs-component">
                                         <ul class="breadcrumb">
                                             <li><a href="home.jsp">Home</a></li>
-                                            <li class="active"><a href="#">Accounts</a></li>
+                                            <li class="active"><a href="#">Report</a></li>
                                             
                                         </ul>
                                     </div>
@@ -111,47 +117,18 @@
                         <div class="bs-component">
                             <div class="list-group">
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active"><a href="">Accounts</a></li>
+                                    <li class="active"><a href="">Reports</a></li>
                                 </ul>
-                                <%
-
-                                    if (userEmail.isEmpty()) {
-                                        response.sendRedirect("index.jsp?error=Please login to access Finance Manager.");
-                                    } else {
-
-                                        try {
-                                            Connection conn = Credential.getConnection();
-                                            if (conn != null) {
-                                                //writer.println("database connection successful.");
-
-                                            }
-
-                                            String query = "select account_id,account_name from accounts where user_email=? ";
-                                            PreparedStatement pstmt = conn.prepareStatement(query);
-                                            pstmt.setString(1, userEmail);
-
-                                            ResultSet result = pstmt.executeQuery();
-
-                                            while (result.next()) {
-                                 %>
-                                <a href="view-account-detail.jsp?account=<%=result.getInt(1)%>" class="list-group-item ">
-                                    <%= result.getString(2)%>
+                                <a href="#" class="list-group-item " id="account">
+                                    Account Report
                                 </a>
-                                <%
-                               
-
-                                            }
-
-                                            conn.close();
-
-                                        } catch (SQLException ex) {
-                                            //Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-
-                                    }
-
-
-                                %>
+                                <a href="" class="list-group-item " id="date">
+                                    Date Report
+                                </a>
+                                <a href="" class="list-group-item " id="category">
+                                    Category Report
+                                </a>
+                                
 
                             </div>
                         </div>
@@ -193,86 +170,25 @@
                     <div class="col-lg-8">
 
 
-                        <div class="bs-component">
-                            <table class="table table-striped table-hover ">
+                        <div class="bs-component" id="ajax-div">
+                            <table class="table table-striped table-hover " >
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Description</th>
+                                        <th>Amount</th>
                                         <th>Category</th>
-                                        <th>Inflow</th>
-                                        <th>outflow</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="ajax-table-body">
 
 
-                                    <%
-                                    double inflow=0,outflow=0;
-                                    if (userEmail.isEmpty()) {
-                                            //response.sendRedirect("index.jsp?error=Please login to access Finance Manager.");
-                                        } else {
-
-                                            try {
-                                                Connection conn = Credential.getConnection();
-                                                if (conn != null) {
-                                                    //writer.println("database connection successful.");
-
-                                                }
-                                                SimpleDateFormat dateFormat
-                                                        = new SimpleDateFormat("yyyy-MM-dd ");
-
-                                                String query = "select t.*,c.category_name from transactions t, categories c where t.user_email=? and t.category_id=c.category_id";
-                                                PreparedStatement pstmt = conn.prepareStatement(query);
-                                                pstmt.setString(1, userEmail);
-
-                                                ResultSet result = pstmt.executeQuery();
-
-                                                while (result.next()) {
-                                    %>
-                                    <tr>
-                                        <td><%=dateFormat.format(result.getDate(3))%></td>
-                                        <td><%=result.getString(2)%></td>
-                                        <td><%=result.getString(9)%></td>
-                                        <%
-                                            if (result.getString(6).equals("I")) {
-                                                inflow+=result.getInt(4);
-                                        %>
-                                        <td>$<%=result.getString(4)%></td> 
-                                        <td></td>
-                                        <%
-                                        } else {
-                                                outflow+=result.getInt(4);
-                                        %>
-                                        <td></td>
-                                        <td>$<%=result.getString(4)%></td> 
-
-                                        <%
-                                            }
-                                        %>
-
-                                    </tr>
-                                    <%
-                                                }
-
-                                                conn.close();
-
-                                            } catch (SQLException ex) {
-                                                //Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
-
-                                        }
-
-
-                                    %>
-
+                                    
                                             
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="3">Total</th>
-                                        <th>$<%=inflow%></th>
-                                        <th>$<%=outflow%></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                             </table> 

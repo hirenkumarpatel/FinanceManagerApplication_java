@@ -56,6 +56,9 @@
                         <li>
                             <a href="new-transaction.jsp">Transaction</a>
                         </li>
+                         <li>
+                            <a href="report.jsp">Reports</a>
+                        </li>
                             
 
                     </ul>
@@ -94,7 +97,7 @@
                                     <div class="bs-component">
                                         <ul class="breadcrumb">
                                             <li><a href="home.jsp">Home</a></li>
-                                            <li><a href="#">Accounts</a></li>
+                                            <li><a href="#">Report</a></li>
                                             <li class="active">New Account</li>
                                         </ul>
                                     </div>

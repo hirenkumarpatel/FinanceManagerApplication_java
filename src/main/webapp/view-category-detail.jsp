@@ -51,6 +51,8 @@
                         </li>
                         <li>
                             <a href="new-transaction.jsp">Transaction</a>
+                        </li><li>
+                            <a href="report.jsp">Reports</a>
                         </li>
                           
 
