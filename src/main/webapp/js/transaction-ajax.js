@@ -22,13 +22,13 @@ $("document").ready(function () {
                     {
                         value.amount="0";
                     }
-                    var newData = $("<tr><td>" + value.accountName + "</td><td>" + value.categoryName + "</td><td>$"+value.amount+"</td><td></td></tr>");
+                    var newData = $("<tr><td>" + value.accountName + "</td><td>" + value.categoryName + "</td><td>$"+value.amount+"</td></tr>");
                     $("#ajax-div").show();
                     $("#ajax-table-body").append(newData);
                 });
-                $("#ajax-table-body").append("<tr><th colspan='2'>Total Income</th><th>$"+subtotal1+"</th><th></th></tr>");
-                
-
+                $("#ajax-table-body").append("<tr class='active'><th colspan='2'>Total Income</th><th>$"+subtotal1+"</th></tr>");
+                total=+subtotal1- +subtotal;
+                ("#ajax-table-footer").html("<tr class='active'><th colspan='2'>Net Amount </th ><th>$"+total+"</th></tr>"); 
 
             }
 
@@ -54,13 +54,13 @@ $("document").ready(function () {
                     {
                         value.amount="0";
                     }
-                    var newData = $("<tr><td>" + value.accountName + "</td><td>" + value.categoryName + "</td><td></td><td>$"+value.amount+"</td></tr>");
+                    var newData = $("<tr><td>" + value.accountName + "</td><td>" + value.categoryName + "</td><td>$"+value.amount+"</td></tr>");
                     $("#ajax-div").show();
                     $("#ajax-table-body").append(newData);
                 });
-                $("#ajax-table-body").append("<tr><th colspan='2'>Total Expense</th><th></th><th>$"+subtotal+"</th></tr>");
-                
-        //$("#ajax-table-body").append("<tr><th colspan='2'>Total </th ><th>$"+(+subtotal1)+ (+subtotal)+"</th></tr>"); 
+                $("#ajax-table-body").append("<tr class='active'><th colspan='2'>Total Expense</th><th>$"+subtotal+"</th></tr>");
+                total= +subtotal1- +subtotal; 
+            $("#ajax-table-footer").html("<tr class='active'><th colspan='2'>Net Amount </th ><th>$"+total+"</th></tr>"); 
 
             }
 

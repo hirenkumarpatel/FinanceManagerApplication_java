@@ -176,8 +176,8 @@
                                     <tr>
                                         <th>Account</th>
                                         <th>Category</th>
-                                        <th>Income</th>
-                                        <th>Expense</th>
+                                        <th>Amount</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody id="ajax-table-body">
@@ -186,7 +186,9 @@
                                     
                                             
                                 </tbody>
-                                
+                                <tfoot id="ajax-table-footer">
+                                    
+                                </tfoot>
                             </table> 
                         </div><!-- /example -->
                     </div>
