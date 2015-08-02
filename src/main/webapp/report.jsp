@@ -174,8 +174,10 @@
                             <table class="table table-striped table-hover " >
                                 <thead>
                                     <tr>
-                                        <th>Amount</th>
+                                        <th>Account</th>
                                         <th>Category</th>
+                                        <th>Income</th>
+                                        <th>Expense</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ajax-table-body">
@@ -184,13 +186,7 @@
                                     
                                             
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="3">Total</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
+                                
                             </table> 
                         </div><!-- /example -->
                     </div>

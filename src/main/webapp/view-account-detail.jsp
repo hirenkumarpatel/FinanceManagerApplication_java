@@ -190,7 +190,7 @@
                   <div class="col-lg-8">
 
 
-                        <div class="bs-component">
+                        <div class="bs-component" id="ajax-div">
                             <table class="table table-striped table-hover ">
                                 <thead>
                                     <tr>
@@ -201,7 +201,7 @@
                                         <th>outflow</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="ajax-table-body">
 
 
                                     <%
