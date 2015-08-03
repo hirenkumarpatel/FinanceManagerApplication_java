@@ -121,6 +121,7 @@ public class RegisterUser extends HttpServlet {
                 pstmt.execute();
                 conn.close();
                 System.out.println("User Inserted");
+                response.sendRedirect("index.jsp");
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
             }
