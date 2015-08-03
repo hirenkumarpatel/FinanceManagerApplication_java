@@ -54,12 +54,12 @@
                         </li><li>
                             <a href="report.jsp">Reports</a>
                         </li>
-                          
+
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="Logout"><%=userEmail%> (logout)</a></li>
-                        </ul>
+                    </ul>
 
 
                 </div>
@@ -115,7 +115,7 @@
                                 <ul class="nav nav-pills nav-stacked">
                                     <li class="active"><a href="">Category</a></li>
                                 </ul>
-                                 <%
+                                <%
 
                                     if (userEmail.isEmpty()) {
                                         response.sendRedirect("index.jsp?error=Please login to access Finance Manager.");
@@ -182,7 +182,7 @@
                     %>
                     <%=msg%>
                     <%=successmsg%>
-                  <div class="col-lg-8">
+                    <div class="col-lg-8">
 
 
                         <div class="bs-component">
@@ -194,16 +194,17 @@
                                         <th>Category</th>
                                         <th>Inflow</th>
                                         <th>outflow</th>
+                                        <th> Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
 
                                     <%
-                                    double inflow=0,outflow=0;
-                                    int categoryId=Integer.parseInt(request.getParameter("category"));
-                                    
-                                    if (userEmail.isEmpty()) {
+                                        double inflow = 0, outflow = 0;
+                                        int categoryId = Integer.parseInt(request.getParameter("category"));
+
+                                        if (userEmail.isEmpty()) {
                                             //response.sendRedirect("index.jsp?error=Please login to access Finance Manager.");
                                         } else {
 
@@ -219,7 +220,7 @@
                                                 String query = "select t.*,c.category_name from transactions t, categories c where t.user_email=? and t.category_id=c.category_id and t.category_id=?";
                                                 PreparedStatement pstmt = conn.prepareStatement(query);
                                                 pstmt.setString(1, userEmail);
-                                                pstmt.setInt(2,categoryId);
+                                                pstmt.setInt(2, categoryId);
 
                                                 ResultSet result = pstmt.executeQuery();
 
@@ -231,13 +232,13 @@
                                         <td><%=result.getString(9)%></td>
                                         <%
                                             if (result.getString(6).equals("I")) {
-                                                inflow+=result.getInt(4);
+                                                inflow += result.getInt(4);
                                         %>
                                         <td>$<%=result.getString(4)%></td> 
                                         <td></td>
                                         <%
                                         } else {
-                                                outflow+=result.getInt(4);
+                                            outflow += result.getInt(4);
                                         %>
                                         <td></td>
                                         <td>$<%=result.getString(4)%></td> 
@@ -245,7 +246,7 @@
                                         <%
                                             }
                                         %>
-
+                                        <td><a href="deleteTransaction?transaction=<%=result.getString(1)%>" class="btn btn-default">Delete</a></td>
                                     </tr>
                                     <%
                                                 }
@@ -261,13 +262,14 @@
 
                                     %>
 
-                                            
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th colspan="3">Total</th>
                                         <th>$<%=inflow%></th>
                                         <th>$<%=outflow%></th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                             </table> 

@@ -96,6 +96,40 @@ public class TransactionsReports {
         return transactionJsonString;
     }
 
+    
+     @GET
+    @Path("/date/{id}")
+    @Produces("application/json")
+    public String getTransactionsByDate(@Context HttpServletRequest reqest,@PathParam("id") String transactionFlow) throws SQLException {
+        Connection conn = getConnection();
+        if (conn == null) {
+            //return "database connection error";
+        }
+        
+        HttpSession session=reqest.getSession();
+        String userEmail=(String) session.getAttribute("user");
+
+        String query = "select monthname(str_to_date(month(t.tran_date),'%m'))as \"date\",a.account_name,c.category_name, sum(t.tran_amount)as \"amount\" from transactions t, categories c,accounts a where t.account_id=a.account_id and t.user_email=? and t.category_id=c.category_id and t.tran_flow=? group by c.category_id,t.account_id,month(t.tran_date)";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, userEmail);
+        pstmt.setString(2, transactionFlow);
+
+        ResultSet result = pstmt.executeQuery();
+
+        while (result.next()) {
+            json = Json.createObjectBuilder()
+                    .add("date", result.getString("date"))
+                    .add("accountName", result.getString("account_name"))
+                    .add("categoryName", result.getString("category_name"))
+                    .add("amount", result.getString("amount"));
+                  transactionJsonArray.add(json);
+
+        }
+        conn.close();
+        String transactionJsonString = transactionJsonArray.build().toString();
+        return transactionJsonString;
+    }
+
     /**
      * PUT method for updating or creating an instance of TransactionsReports
      *

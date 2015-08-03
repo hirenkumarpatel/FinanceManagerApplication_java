@@ -33,6 +33,7 @@
         <link rel="stylesheet" href="css/bootswatch.min" media="screen">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/transaction-ajax.js"></script>
+       
 
     </head>
     <body>
@@ -122,12 +123,10 @@
                                 <a href="#" class="list-group-item " id="account">
                                     Account Report
                                 </a>
-                                <a href="" class="list-group-item " id="date">
+                                <a href="#" class="list-group-item " id="date-report">
                                     Date Report
                                 </a>
-                                <a href="" class="list-group-item " id="category">
-                                    Category Report
-                                </a>
+                                
                                 
 
                             </div>
@@ -172,13 +171,8 @@
 
                         <div class="bs-component" id="ajax-div">
                             <table class="table table-striped table-hover " >
-                                <thead>
-                                    <tr>
-                                        <th>Account</th>
-                                        <th>Category</th>
-                                        <th>Amount</th>
-                                        
-                                    </tr>
+                                <thead id="ajax-table-head">
+                                    
                                 </thead>
                                 <tbody id="ajax-table-body">
 
@@ -191,6 +185,9 @@
                                 </tfoot>
                             </table> 
                         </div><!-- /example -->
+                        
+                       
+                        
                     </div>
 
                 </div>

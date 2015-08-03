@@ -97,8 +97,8 @@
                                     <div class="bs-component">
                                         <ul class="breadcrumb">
                                             <li><a href="home.jsp">Home</a></li>
-                                            <li><a href="#">Report</a></li>
-                                            <li class="active">New Account</li>
+                                            <li><a href="#">Account</a></li>
+                                            <li class="active">View Account</li>
                                         </ul>
                                     </div>
 
@@ -199,6 +199,7 @@
                                         <th>Category</th>
                                         <th>Inflow</th>
                                         <th>outflow</th>
+                                        <th>action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ajax-table-body">
@@ -246,11 +247,11 @@
                                         %>
                                         <td></td>
                                         <td>$<%=result.getString(4)%></td> 
-
+                                        
                                         <%
                                             }
                                         %>
-
+                                        <td><a href="deleteTransaction?transaction=<%=result.getString(1)%>" class="btn btn-default ">Delete</a></td>
                                     </tr>
                                     <%
                                                 }
@@ -273,6 +274,7 @@
                                         <th colspan="3">Total</th>
                                         <th>$<%=inflow%></th>
                                         <th>$<%=outflow%></th>
+                                        <th></th>
                                     </tr>
                                 </tfoot>
                             </table> 
