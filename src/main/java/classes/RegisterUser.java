@@ -124,6 +124,7 @@ public class RegisterUser extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendRedirect("index.jsp?error=Error: "+ex.getMessage());
             }
         }
 

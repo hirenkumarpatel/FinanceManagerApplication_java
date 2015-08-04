@@ -17,11 +17,11 @@ public class Credential {
      public static Connection getConnection() {
         Connection conn = null;
         try {
-          /*  Class.forName("com.mysql.jdbc.Driver");
+           /* Class.forName("com.mysql.jdbc.Driver");
             String jdbc = "jdbc:mysql://localhost/financemanager";
             String user = "root";
             String pass = "";
-          */  
+           */ 
            
             
            Class.forName("com.mysql.jdbc.Driver");

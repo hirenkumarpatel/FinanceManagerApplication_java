@@ -132,7 +132,7 @@ public class UserLogin extends HttpServlet {
                     writer.println("new user email :"+newUserEmail);
                     HttpSession session = request.getSession();
                     session.setAttribute("user",newUserEmail);
-                    //response.sendRedirect("home.jsp");
+                    
                     RequestDispatcher dispatcher= request.getRequestDispatcher("home.jsp");
                     dispatcher.forward(request, response);
                 }
@@ -150,7 +150,7 @@ public class UserLogin extends HttpServlet {
             catch(Exception ex)
             {
                 writer.println("other exception"+ex.getMessage());
-                
+                response.sendRedirect("index.jsp?error= Invalid email or password");
             }
             writer.close();
             

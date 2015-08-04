@@ -88,7 +88,7 @@ public class deleteTransaction extends HttpServlet {
                 pstmt.execute();
                 conn.close();
                 System.out.println("User removed");
-                response.sendRedirect("view-account-detail.jsp?account=1");
+                response.sendRedirect("view-account-detail.jsp?account=1&success=Transaction deleted.");
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
             }
